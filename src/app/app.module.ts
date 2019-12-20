@@ -14,6 +14,7 @@ import { RecoveryPasswordComponent } from './components/recovery-password/recove
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { LogComponent } from './components/log/log.component';
 import { DetailsLogComponent } from './components/details-log/details-log.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DetailsLogComponent } from './components/details-log/details-log.compon
     AngularMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

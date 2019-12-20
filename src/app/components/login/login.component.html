@@ -8,14 +8,17 @@
       <form class="form">
         <mat-card-content>
           <mat-form-field class="full-width">
-            <input matInput placeholder="Email">
+            <input matInput placeholder="Email" required [(ngModel)]="user.email" name="email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine">
+              Favor digitar o nome de usuário!
+            </div>
           </mat-form-field>
   
           <mat-form-field class="full-width">
-            <input matInput placeholder="Senha">
+            <input matInput placeholder="Senha" required [(ngModel)]="user.password" name="password" #password="ngModel">
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button routerLink="/log" class="btn-login">Login</button>
+        <button mat-stroked-button (click)="login()" class="btn-login">Login</button>
         <!-- <a routerLink="/recovery-password" routerLinkActive="selected">Esqueci minha senha</a><br> -->
         <button routerLink="/recovery-password" color="accent" class="btn-esqueci">Esqueci minha senha</button>
       </form>
