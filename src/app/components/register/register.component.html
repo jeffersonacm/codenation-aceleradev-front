@@ -1,1 +1,28 @@
-<p>register works!</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Registrar</mat-card-title>
+      </mat-card-header>
+  
+      <form class="form">
+  
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nome">
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" [formControl]="emailFormControl"
+            [errorStateMatcher]="matcher">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Insira um email válido
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Senha">
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block">Register</button>
+      </form>
+    </mat-card>
+</div>
