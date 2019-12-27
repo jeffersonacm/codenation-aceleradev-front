@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import * as Variables from '../config/variables';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { User } from '../../model/user';
+import { UserLogin } from 'src/model/userLogin';
 
 
 @Injectable({
@@ -16,8 +16,7 @@ export class LoginService {
     this.baseUrl = `${Variables.BASE_URL}` + '/users';
   }
 
-  login(user: User): Observable <any> {
-
+  login(user: UserLogin): Observable <any> {
     const params = new HttpParams() 
       .set('username', user.email)
       .set('password', user.password)

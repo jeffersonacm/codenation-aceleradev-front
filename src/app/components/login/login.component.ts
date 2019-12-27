@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/model/user';
 import { LoginService } from 'src/app/services/login.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserLogin } from 'src/model/userLogin';
 
 @Component({
   selector: 'app-login',
@@ -10,26 +12,45 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User();
+  public loginForm: FormGroup;
+  public hide: Boolean = true;
 
   constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required])
+    });
   }
 
-  goToRecovery() {
+  public hasError = (controlName: string, errorName: string) => {
+    return this.loginForm.controls[controlName].hasError(errorName);
+  }
+
+  public login = (loginFormValue) => {
+    if (this.loginForm.valid) {
+      this.execlogin(loginFormValue);
+    }
+  } 
+
+  public goToRecovery() {
     this.router.navigate(['recovery-password']);
   }
 
-  login() {
-    this.router.navigate(['log']);s
-    // console.log(localStorage);
-    // this.loginService.login(this.user).subscribe(data => {
-    //   this.loginSuccess(data);
-    //   console.log(data);
-    // }, error => {
-    //   console.log('deu ruim');
-    // });
+  public execlogin(loginFormValue) {
+    //this.router.navigate(['log']); 
+
+    let user: UserLogin = {
+      email: loginFormValue.email,
+      password: loginFormValue.password
+    }
+    
+    this.loginService.login(user).subscribe(data => {
+      this.loginSuccess(data);
+    }, error => {
+      console.log(error);
+    });
   }
 
   public loginSuccess(data) {
