@@ -3,35 +3,41 @@ body {
     height: 100%;
 }
 
-.login-wrapper {
+.register-wrapper {
     height: 100%;
     background: var(--backgroud-default);
 }
 
-.login-wrapper .form {
+.register-wrapper .form {
     min-width: 100%;
     max-width: 300px;
     width: 100%;
 }
 
-.login-wrapper .full-width,
-.login-wrapper .btn-block {
+.register-wrapper .full-width,
+.register-wrapper .btn-block {
     width: 100%;
 }
 
-.login-wrapper mat-card-header {
+.register-wrapper mat-card-header mat-card-title {
+    font-size: 30px;
+    margin: 0;
+    color: var(--main-color);
+}
+
+.register-wrapper mat-card-header {
     text-align: center;
     width: 100%;
     display: block;
     font-weight: 900;
 }
 
-.login-wrapper mat-card-header mat-card-title {
+.register-wrapper mat-card-header mat-card-title {
     font-size: 30px;
     margin: 0;
 }
 
-.login-wrapper .mat-stroked-button {
+.register-wrapper .mat-stroked-button {
     margin-top: 10px;
     border: 0;
     border-radius: 4px;

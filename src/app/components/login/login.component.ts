@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/model/user';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserLogin } from 'src/model/userLogin';
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public hide: Boolean = true;
 
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       password: loginFormValue.password
     }
     
-    this.loginService.login(user).subscribe(data => {
+    this.authService.login(user).subscribe(data => {
       this.loginSuccess(data);
     }, error => {
       console.log(error);
@@ -57,10 +57,10 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
     localStorage.setItem('accessToken', 'data.access_token');
     localStorage.setItem('refreshToken', 'data.refresh_token');
-    this.redirectPage();
+    this.redirectLogPage();
   }
 
-  public redirectPage() {
+  public redirectLogPage() {
     localStorage.setItem('currentUser', JSON.stringify('user'));
     this.router.navigate(['log']);
   }

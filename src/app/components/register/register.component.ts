@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { User } from 'src/model/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -16,16 +19,43 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  public registerForm: FormGroup;
+
+  public hide: Boolean = true;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.registerForm = new FormGroup({
+      name: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required])
+    });
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
+  public hasError = (controlName: string, errorName: string) => {
+    return this.registerForm.controls[controlName].hasError(errorName);
+  }
 
-  matcher = new MyErrorStateMatcher();
+  register(registerFormValue) {
+    let user: User = {
+      name: registerFormValue.name,
+      email: registerFormValue.email,
+      password: registerFormValue.password
+    };
 
+    this.execRegister(user);
+  }
+
+  execRegister(user) {
+    this.authService.register(user).subscribe(data => {
+      this.goToLogin(data);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  goToLogin(data) {
+    this.router.navigate(['login'], data);
+  }
 }

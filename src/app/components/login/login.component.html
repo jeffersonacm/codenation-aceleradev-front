@@ -5,7 +5,7 @@
         <mat-card-title>Login</mat-card-title>
       </mat-card-header>
   
-      <form [formGroup]="loginForm" class="form" autocomplete="off" novalidate (ngSubmit)="login(loginForm.value)">
+      <form [formGroup]="loginForm" class="form" novalidate (ngSubmit)="login(loginForm.value)">
         <mat-card-content>
           <mat-form-field class="full-width">
             <input matInput placeholder="Email" formControlName="email" id="email">
@@ -20,7 +20,7 @@
             </button>
             <mat-error *ngIf="hasError('password', 'required')">Informe a sua senha</mat-error>
           </mat-form-field>
-          
+
           <a routerLink="/recovery-password" style="color: orange;">Esqueci minha senha</a><br>
 
           <mat-card-actions>

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import * as Variables from '../config/variables';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { UserLogin } from 'src/model/userLogin';
+import { User } from 'src/model/user';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
   public baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
@@ -25,8 +26,16 @@ export class LoginService {
     const options = {
         headers: Variables.HEADERS_COMMUN,
         params
-      };
+    };
 
     return this.httpClient.post(Variables.URL_TOKEN, null, options);
+  }
+
+  register(user: User): Observable <any> {
+    const options = {
+      headers: Variables.HEADERS_COMMUN
+    };
+
+    return this.httpClient.post(Variables.REGISTER_URL, user, options);
   }
 }
