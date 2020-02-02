@@ -4,6 +4,7 @@ import { User } from 'src/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserLogin } from 'src/model/userLogin';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public hide: Boolean = true;
+  public loginInvalid: Boolean = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -49,7 +51,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(user).subscribe(data => {
       this.loginSuccess(data);
     }, error => {
-      console.log(error);
+      this.loginInvalid = true;
+      console.log(error.error);
     });
   }
 

@@ -1,18 +1,19 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
     <mat-card class="box">
+      <mat-error class="postError" *ngIf="loginInvalid">
+        Usuário inexistente ou senha inválida!
+      </mat-error>
       <mat-card-header>
         <mat-card-title>Login</mat-card-title>
       </mat-card-header>
-  
-      <form [formGroup]="loginForm" class="form" novalidate (ngSubmit)="login(loginForm.value)">
-        <mat-card-content>
+      <mat-card-content>
+        <form [formGroup]="loginForm" class="form" novalidate (ngSubmit)="login(loginForm.value)">
           <mat-form-field class="full-width">
             <input matInput placeholder="Email" formControlName="email" id="email">
             <mat-error *ngIf="hasError('email', 'required')">Informe o seu email</mat-error>
             <mat-error *ngIf="hasError('email', 'email')">Informe um email válido</mat-error>
           </mat-form-field>
-  
           <mat-form-field class="full-width">
             <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" formControlName="password" id="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -20,16 +21,16 @@
             </button>
             <mat-error *ngIf="hasError('password', 'required')">Informe a sua senha</mat-error>
           </mat-form-field>
-
-          <a routerLink="/recovery-password" style="color: orange;">Esqueci minha senha</a><br>
-
           <mat-card-actions>
-            <button mat-stroked-button class="btn-login">Login</button>
+            <button mat-raised-button class="btn-login">Login</button>
           </mat-card-actions>
-          
-        </mat-card-content>
-        <!-- <button routerLink="/recovery-password" color="accent" class="btn-esqueci">Esqueci minha senha</button> -->
-      </form>
+          <div class="outherAction">
+            <a routerLink="/recovery-password">Esqueceu sua senha?</a><br>
+            <a routerLink="/register">Ainda não possui cadastro?</a><br>
+          </div>
+          <!-- <button routerLink="/recovery-password" color="accent" class="btn-esqueci">Esqueci minha senha</button> -->
+        </form>
+      </mat-card-content>
     </mat-card> 
   
   </div>

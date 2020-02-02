@@ -1,15 +1,8 @@
-html,
-body {
-    height: 100%;
-}
-
 .login-wrapper {
     height: 100%;
-    background: var(--background-default);
 }
 
 .login-wrapper .form {
-    min-width: 100%;
     max-width: 300px;
     width: 100%;
 }
@@ -21,7 +14,6 @@ body {
 
 .login-wrapper mat-card-header {
     text-align: center;
-    width: 100%;
     display: block;
     font-weight: 900;
 }
@@ -50,18 +42,39 @@ body {
     font-size: 12px;
     background: #ffffff;
     color: var(--main-color);
-    cursor: pointer;
 }
 
 .md-button-right  {
     position: absolute;
     right: 0px;
     margin: 0;
-  }
-
-mat-form-field{
-    width: 400px;
 }
-mat-card-title{
+
+.mat-flat-button, .mat-raised-button, .mat-fab, .mat-mini-fab {
+    color: #fff;
+    background-color: var(--main-color);
+}
+
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
     text-align: center;
+}
+
+mat-card-title {
+    text-align: center;
+    padding: 10px;
+}
+
+a {
+    padding-top: 10px;
+    color: var(--main-color);
+}
+
+.outherAction {
+    display: inline-flex;
+}
+
+.postError {
+    padding: 20px;
 }

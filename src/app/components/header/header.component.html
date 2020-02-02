@@ -1,10 +1,8 @@
 <mat-toolbar class="var(--main-color)p-header">
     <div style="color: white;">Codenation DashBoard</div>
-    <span *ngIf="isAuthenticated()">
-      <a mat-button routerLink="login" style="color: white;" routerLinkActive="active">Login</a>
-      <a mat-button routerLink="register" style="color: white;" routerLinkActive="active">Register</a>
+      <a mat-button class="headerButton" routerLink="login" style="color: white;" routerLinkActive="active">Login</a>
+      <a mat-button class="headerButton" routerLink="register" style="color: white;" routerLinkActive="active">Register</a>
       <!-- <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a> -->
-    </span> 
     <!-- <span class="navButtons" ng-class="" *ngIf="isAuthenticated()">
       <a mat-button (click)="logout()" class="md-button-right" routerLinkActive="active">Logout</a>
     </span>  -->
