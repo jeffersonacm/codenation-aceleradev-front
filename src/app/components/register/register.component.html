@@ -1,5 +1,6 @@
 <div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
+      <mat-error class="postError" *ngIf="emailUsed">O email informado já está em uso</mat-error>
       <mat-card-header>
         <mat-card-title>Registrar</mat-card-title>
       </mat-card-header>
@@ -10,13 +11,11 @@
             <input matInput placeholder="Nome" formControlName="name" id="name">
             <mat-error *ngIf="hasError('name', 'required')">O nome é obrigatório</mat-error>
           </mat-form-field>
-  
           <mat-form-field class="full-width">
             <input matInput placeholder="Email" formControlName="email" id="email">
             <mat-error *ngIf="hasError('email', 'email')">Insira um email válido</mat-error>
             <mat-error *ngIf="hasError('email', 'required')">O email é obrigatório</mat-error>
           </mat-form-field>
-
           <mat-form-field class="full-width">
             <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" formControlName="password" id="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -24,10 +23,12 @@
             </button>
             <mat-error *ngIf="hasError('password', 'required')">A senha é obrigatória</mat-error>
           </mat-form-field>
-
           <mat-card-actions>
             <button mat-stroked-button color="accent" class="btn-block">Register</button>
           </mat-card-actions>
+          <div class="outherAction">
+            <a routerLink="/login">Ainda não possui cadastro?</a>
+          </div>
         </mat-card-content>
       </form>
     </mat-card>

@@ -23,6 +23,8 @@ export class RegisterComponent implements OnInit {
 
   public hide: Boolean = true;
 
+  public emailUsed: Boolean = false;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -51,7 +53,10 @@ export class RegisterComponent implements OnInit {
     this.authService.register(user).subscribe(data => {
       this.goToLogin(data);
     }, error => {
-      console.log(error);
+      console.log(error.status);
+      this.emailUsed = true;
+      if(error.status == 400) {
+      }
     });
   }
 
