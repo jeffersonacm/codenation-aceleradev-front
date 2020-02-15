@@ -19,7 +19,9 @@ import {
    MatTooltipModule,
    MatTableModule,
    MatPaginatorModule,
-   MatSortModule
+   MatSortModule,
+   MatSnackBar,
+   MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -61,11 +63,12 @@ import {
       MatTooltipModule,
       MatTableModule,
       MatPaginatorModule,
-      MatSortModule
+      MatSortModule,
+      MatSnackBarModule
    ],
    providers: [
       MatDatepickerModule,
-   ]
+   ],
 })
 
 export class AngularMaterialModule { }

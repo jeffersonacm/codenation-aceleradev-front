@@ -6,7 +6,6 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { UserLogin } from 'src/model/userLogin';
 import { User } from 'src/model/user';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -37,5 +36,15 @@ export class AuthService {
     };
 
     return this.httpClient.post(Variables.REGISTER_URL, user, options);
+  }
+
+  recoveryRequest(email: string): Observable<any> {
+    const params = new HttpParams().set("email", email);
+    const options = {
+      headers: Variables.HEADERS_COMMUN,
+      params
+    }
+
+    return this.httpClient.post(Variables.RECOVERY_REQUEST, null, options);
   }
 }

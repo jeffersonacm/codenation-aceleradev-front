@@ -15,6 +15,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { LogComponent } from './components/log/log.component';
 import { DetailsLogComponent } from './components/details-log/details-log.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     RecoveryPasswordComponent,
     ChangePasswordComponent,
     LogComponent,
-    DetailsLogComponent
+    DetailsLogComponent,
+    SnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
